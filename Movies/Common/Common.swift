@@ -14,6 +14,8 @@ struct Constants {
     
     let year = "Year: "
     let type = "Type: "
+    let add_favourite = "Add Favourite"
+    let remove_favourite = "Remove Favourite"
 }
 
 struct ColorValues {

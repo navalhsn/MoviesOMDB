@@ -26,36 +26,57 @@ class MovieDetailViewController: UIViewController {
     // #MARK: VCLC
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMovieDetail(for: imdbId)
+        initialSetup()
     }
     
     // #MARK: Other functions
+    
+    func initialSetup() {
+        getMovieDetail(for: imdbId)
+        setFavouriteButtonTitle()
+    }
+    
+    func setFavouriteButtonTitle() {
+        if coreData.isMoviePresent(with: imdbId) {
+            addFavouriteButton.setTitle(Constants.shared.remove_favourite, for: .normal)
+        } else {
+            addFavouriteButton.setTitle(Constants.shared.add_favourite, for: .normal)
+        }
+    }
+    
     func getMovieDetail(for id: String) {
         networkService.fetchApiData(endPoint: .getMovieDetail(imdbId: id), resultType: MovieDetailModel.self, completionHandler: { response in
-            print(response)
             self.movieDetailModel = response
-            DispatchQueue.main.async {
-                self.movieTitleLabel.text = response.title
-                self.movieReleaseDateLabel.text = Constants.shared.year + (response.year ?? "")
-                if let imageUrl = URL(string: response.poster ?? "")  {
-                    DispatchQueue.global().async {
-                        if let imageData = try? Data(contentsOf: imageUrl) {
-                            let image = UIImage(data: imageData)
-                            DispatchQueue.main.async {
-                                self.movieImageView.image = image
-                            }
-                        }
-                    }
-                }
-                // rating
-                let rating = response.ratings?[0].value ?? ""
-                self.ratingLabel.text = rating
-                self.movieDescriptionLabel.text = response.plot
-            }
+            self.setupUI(response: response)
         })
     }
     
+    func setupUI(response: MovieDetailModel) {
+        DispatchQueue.main.async {
+            self.movieTitleLabel.text = response.title
+            self.movieReleaseDateLabel.text = Constants.shared.year + (response.year ?? "")
+            if let imageUrl = URL(string: response.poster ?? "")  {
+                DispatchQueue.global().async {
+                    if let imageData = try? Data(contentsOf: imageUrl) {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.movieImageView.image = image
+                        }
+                    }
+                }
+            }
+            let rating = response.ratings?[0].value ?? ""
+            self.ratingLabel.text = rating
+            self.movieDescriptionLabel.text = response.plot
+        }
+    }
+    
     @IBAction func addFavouriteAction() {
-        coreData.addMovie(id: movieDetailModel?.imdbID ?? "", title: movieDetailModel?.title ?? "")
+        if addFavouriteButton.titleLabel?.text == Constants.shared.add_favourite {
+            self.coreData.addMovie(id: movieDetailModel?.imdbID ?? "", title: movieDetailModel?.title ?? "")
+        } else {
+            coreData.removeMovie(id: movieDetailModel?.imdbID ?? "")
+        }
+        setFavouriteButtonTitle()
     }
 }

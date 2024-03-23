@@ -16,10 +16,16 @@ class FavouritesViewController: UIViewController {
     let coreData = HandleCoreData()
     var movieData: [Movie]?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // #MARK: VCLC
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         movieData = coreData.fetchMovies()
+        if movieData?.count == 0 {
+            movieListTableView.isHidden = true
+        } else {
+            movieListTableView.isHidden = false
+        }
         movieListTableView.reloadData()
     }
-    
 }

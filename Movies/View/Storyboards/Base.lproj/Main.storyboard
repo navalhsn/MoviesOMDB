@@ -33,8 +33,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie not found!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgQ-GN-Lar">
+                                <rect key="frame" x="132.66666666666666" y="415.66666666666669" width="127.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8xs-C0-1EG">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="159" width="393" height="659"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListMoviesTableViewCell" rowHeight="158" id="xmm-Ar-iB7" customClass="ListMoviesTableViewCell" customModule="Movies" customModuleProvider="target">
@@ -98,11 +104,23 @@
                                     <outlet property="delegate" destination="TAG-lm-hkc" id="CHz-Ps-Ckj"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="rrx-sW-j8K">
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TAG-lm-hkc" id="Q04-mk-AtU"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bYZ-Hv-fvU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8xs-C0-1EG" firstAttribute="top" secondItem="bYZ-Hv-fvU" secondAttribute="top" id="3q3-Jc-uGp"/>
+                            <constraint firstItem="rrx-sW-j8K" firstAttribute="leading" secondItem="mAz-UZ-Gcu" secondAttribute="leading" id="0jL-sh-9fq"/>
+                            <constraint firstItem="rrx-sW-j8K" firstAttribute="top" secondItem="bYZ-Hv-fvU" secondAttribute="top" id="IHb-Am-S9V"/>
+                            <constraint firstItem="8xs-C0-1EG" firstAttribute="top" secondItem="rrx-sW-j8K" secondAttribute="bottom" id="cfO-qs-d2m"/>
+                            <constraint firstItem="JgQ-GN-Lar" firstAttribute="centerY" secondItem="mAz-UZ-Gcu" secondAttribute="centerY" id="fGt-V9-Ut3"/>
+                            <constraint firstItem="JgQ-GN-Lar" firstAttribute="centerX" secondItem="mAz-UZ-Gcu" secondAttribute="centerX" id="fjA-WO-3NU"/>
+                            <constraint firstItem="bYZ-Hv-fvU" firstAttribute="trailing" secondItem="rrx-sW-j8K" secondAttribute="trailing" id="gVr-JA-Fm4"/>
                             <constraint firstItem="bYZ-Hv-fvU" firstAttribute="trailing" secondItem="8xs-C0-1EG" secondAttribute="trailing" id="j19-RI-JR0"/>
                             <constraint firstItem="bYZ-Hv-fvU" firstAttribute="bottom" secondItem="8xs-C0-1EG" secondAttribute="bottom" id="mHC-i1-xog"/>
                             <constraint firstItem="8xs-C0-1EG" firstAttribute="leading" secondItem="bYZ-Hv-fvU" secondAttribute="leading" id="p0G-Li-Yci"/>
@@ -111,6 +129,7 @@
                     <navigationItem key="navigationItem" title="Movies" id="TWy-cg-sLb"/>
                     <connections>
                         <outlet property="movieListTableView" destination="8xs-C0-1EG" id="ckW-mQ-QFE"/>
+                        <outlet property="searchBar" destination="rrx-sW-j8K" id="fZQ-Re-Y7z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aoc-9I-wPb" sceneMemberID="firstResponder"/>

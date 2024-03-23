@@ -15,10 +15,13 @@ class MovieDetailViewController: BaseViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieDescriptionLabel: UILabel!
+    @IBOutlet weak var addFavouriteButton: UIButton!
     
     // #MARK: Declarations
     private var networkService = NetworkService()
     var imdbId = String()
+    let coreData = HandleCoreData()
+    var movieDetailModel: MovieDetailModel?
     
     // #MARK: VCLC
     override func viewDidLoad() {
@@ -35,7 +38,7 @@ class MovieDetailViewController: BaseViewController {
     func getMovieDetail(for id: String) {
         networkService.fetchApiData(endPoint: .getMovieDetail(imdbId: id), resultType: MovieDetailModel.self, completionHandler: { response in
             print(response)
-           // self.movieDetailModel = response
+            self.movieDetailModel = response
             DispatchQueue.main.async {
                 self.movieTitleLabel.text = response.title
                 self.movieReleaseDateLabel.text = Constants.shared.year + (response.year ?? "")
@@ -57,4 +60,7 @@ class MovieDetailViewController: BaseViewController {
         })
     }
     
+    @IBAction func addFavouriteAction() {
+        coreData.addMovie(id: movieDetailModel?.imdbID ?? "", title: movieDetailModel?.title ?? "")
+    }
 }

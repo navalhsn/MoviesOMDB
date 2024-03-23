@@ -34,4 +34,5 @@ struct CellIdentifiers {
     private init() {}
     // Listing
     let listMoviesTableViewCell = "ListMoviesTableViewCell"
+    let favouriteTableViewCell = "FavouriteTableViewCell"
 }

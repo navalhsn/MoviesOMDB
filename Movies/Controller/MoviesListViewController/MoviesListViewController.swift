@@ -11,6 +11,7 @@ class MoviesListViewController: UIViewController {
     // #MARK: Outlets
     @IBOutlet weak var movieListTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
     // #MARK: Declarations
     private var networkService = NetworkService()
     var movieResponseModel: MovieResponseModel?
@@ -18,7 +19,6 @@ class MoviesListViewController: UIViewController {
     // #MARK: VCLC
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialSetup()
     }
     

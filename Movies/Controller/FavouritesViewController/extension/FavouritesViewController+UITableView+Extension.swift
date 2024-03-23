@@ -8,20 +8,20 @@
 import UIKit
 import CoreData
 
-extension FavouritesViewController {
+extension FavouritesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieData.count
+        return movieData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.shared.favouriteTableViewCell) as! FavouriteTableViewCell
-        cell.movieTitleLabel.text = movieData[indexPath.item].title
+        cell.movieTitleLabel.text = movieData?[indexPath.item].title
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: ViewControllerIdentifiers.shared.movieDetailViewController) as? MovieDetailViewController {
-            vc.imdbId = movieData[indexPath.row].id ?? ""
+            vc.imdbId = movieData?[indexPath.row].id ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

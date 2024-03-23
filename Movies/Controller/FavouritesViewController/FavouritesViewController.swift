@@ -9,13 +9,17 @@ import UIKit
 import CoreData
 
 class FavouritesViewController: UIViewController {
+    // #MARK: Outlets
+    @IBOutlet weak var movieListTableView: UITableView!
+    
+    // #MARK: Declarations
     let coreData = HandleCoreData()
-    let movieData = [Movie]()
+    var movieData: [Movie]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(coreData.fetchMovies())
+        movieData = coreData.fetchMovies()
+        movieListTableView.reloadData()
     }
-
+    
 }

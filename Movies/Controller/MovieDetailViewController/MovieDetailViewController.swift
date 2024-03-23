@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MovieDetailViewController: BaseViewController {
+class MovieDetailViewController: UIViewController {
     // #MARK: Outlets
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieReleaseDateLabel: UILabel!
@@ -27,11 +27,6 @@ class MovieDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getMovieDetail(for: imdbId)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupDetailNavigationBar()
     }
     
     // #MARK: Other functions

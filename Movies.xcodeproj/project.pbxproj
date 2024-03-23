@@ -382,7 +382,6 @@
 			);
 			mainGroup = 18951F872BAF046E002BF642;
 			packageReferences = (
-				18951FE52BAF2C85002BF642 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 18951F912BAF046E002BF642 /* Products */;
 			projectDirPath = "";
@@ -796,17 +795,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		18951FE52BAF2C85002BF642 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		18951F9C2BAF046E002BF642 /* Movies.xcdatamodeld */ = {

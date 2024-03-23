@@ -18,12 +18,6 @@ struct Constants {
     let remove_favourite = "Remove Favourite"
 }
 
-struct ColorValues {
-    // General
-    static let activityIndicatorColor = "#ffe300"
-    static let navigationBarBackgroundColor = UIColor.systemBackground
-}
-
 struct ViewControllerIdentifiers {
     static let shared = ViewControllerIdentifiers()
     private init() {}

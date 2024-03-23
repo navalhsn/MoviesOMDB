@@ -17,8 +17,8 @@ extension MoviesListViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.shared.listMoviesTableViewCell) as! ListMoviesTableViewCell
         if let result = movieResponseModel?.movieInfo?[indexPath.row] {
             cell.movieTitleLabel.text = result.title
-            cell.movieReleaseDateLabel.text = result.year
-           // cell.ratingLabel.text = "\(result.rating ?? 0)/10 "
+            cell.movieReleaseDateLabel.text = Constants.shared.year + (result.year ?? "")
+            cell.typeLabel.text = Constants.shared.type + (result.type ?? "").capitalized
             if let imageUrl = URL(string: result.poster ?? "")  {
                 DispatchQueue.global().async {
                     if let imageData = try? Data(contentsOf: imageUrl) {
@@ -34,9 +34,9 @@ extension MoviesListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: ViewControllerIdentifiers.shared.movieDetailViewController) as? MovieDetailViewController {
-//            vc.resultModel = trendingMoviesModel?.results?[indexPath.row]
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        if let vc = storyboard?.instantiateViewController(withIdentifier: ViewControllerIdentifiers.shared.movieDetailViewController) as? MovieDetailViewController {
+            vc.imdbId = movieResponseModel?.movieInfo?[indexPath.row].imdbID ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

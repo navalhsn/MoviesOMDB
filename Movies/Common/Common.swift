@@ -11,10 +11,9 @@ import UIKit
 struct Constants {
     static let shared = Constants()
     private init() {}
-    // Detail
-    let rating = "Rating:"
-    let based_on = "Based on"
-    let votes = "Votes"
+    
+    let year = "Year: "
+    let type = "Type: "
 }
 
 struct ColorValues {

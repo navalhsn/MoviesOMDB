@@ -18,9 +18,9 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var addFavouriteButton: UIButton!
     
     // #MARK: Declarations
-    private var networkService = NetworkService()
+    var networkService = NetworkService()
     var imdbId = String()
-    let coreData = HandleCoreData()
+    var coreData = HandleCoreData()
     var movieDetailModel: MovieDetailModel?
     
     // #MARK: VCLC

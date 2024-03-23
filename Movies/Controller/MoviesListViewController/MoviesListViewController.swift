@@ -13,7 +13,7 @@ class MoviesListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     // #MARK: Declarations
-    private var networkService = NetworkService()
+    var networkService = NetworkService()
     var movieResponseModel: MovieResponseModel?
     
     // #MARK: VCLC

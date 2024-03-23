@@ -13,7 +13,7 @@ class FavouritesViewController: UIViewController {
     @IBOutlet weak var movieListTableView: UITableView!
     
     // #MARK: Declarations
-    let coreData = HandleCoreData()
+    var coreData = HandleCoreData()
     var movieData: [Movie]?
     
     // #MARK: VCLC
